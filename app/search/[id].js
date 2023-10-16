@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import {
   ActivityIndicator,
   FlatList,
@@ -9,10 +10,14 @@ import {
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 import axios from "axios";
+import { RAPID_API_KEY } from "@env";
 
 import { ScreenHeaderBtn, NearbyJobCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
+import { env } from "process";
+
+const rapidApiKey = RAPID_API_KEY;
 
 const JobSearch = () => {
   const params = useSearchParams();
@@ -32,8 +37,7 @@ const JobSearch = () => {
         method: "GET",
         url: `https://jsearch.p.rapidapi.com/search`,
         headers: {
-          "X-RapidAPI-Key":
-            "4621c27746mshe8b82b1f197b7d6p1a2ac8jsnbe243b6c3898",
+          "X-RapidAPI-Key": rapidApiKey,
           "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
         },
         params: {
